@@ -3,7 +3,19 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { BentoGrid, BentoCard } from "@/components/bento-grid"
 import { AnimatedCounter } from "@/components/animated-counter"
-import { FileText, Github, Linkedin, Mail, ArrowUpRight, Database, Package, Truck, Code2, Cloud } from "lucide-react"
+import {
+  FileText,
+  Github,
+  Linkedin,
+  Mail,
+  DatabaseZap,
+  Cpu,
+  Package,
+  Truck,
+  Code2,
+  Cloud,
+  Brain,
+} from "lucide-react"
 
 export default function PortfolioPage() {
   return (
@@ -12,7 +24,7 @@ export default function PortfolioPage() {
         {/* Left Column: Fixed Content on Desktop */}
         <aside className="lg:col-span-5 flex flex-col justify-between lg:sticky lg:top-24 lg:h-[calc(100vh-12rem)]">
           <div>
-            <h1 className="text-5xl font-bold tracking-tight text-foreground sm:text-6xl">Gauthum</h1>
+            <h1 className="text-5xl font-bold tracking-tight text-foreground sm:text-6xl">Gauthum J</h1>
             <h2 className="mt-4 text-xl font-medium text-primary tracking-wide uppercase">
               Supply Chain Systems Engineer
             </h2>
@@ -39,13 +51,13 @@ export default function PortfolioPage() {
 
           <div className="mt-12 lg:mt-0 space-y-8">
             <div className="flex items-center gap-6 text-muted-foreground">
-              <a href="#" className="hover:text-primary transition-colors">
+              <a href="https://github.com/gauthumj" className="hover:text-primary transition-colors">
                 <Github className="w-6 h-6" />
               </a>
-              <a href="#" className="hover:text-primary transition-colors">
+              <a href="https://linkedin.com/in/gauthum-j" className="hover:text-primary transition-colors">
                 <Linkedin className="w-6 h-6" />
               </a>
-              <a href="#" className="hover:text-primary transition-colors">
+              <a href="mailto:jgauthum@gmail.com" className="hover:text-primary transition-colors">
                 <Mail className="w-6 h-6" />
               </a>
               <Button
@@ -92,27 +104,38 @@ export default function PortfolioPage() {
 
           <section id="experience" className="space-y-12">
             <h3 className="text-sm font-bold tracking-widest uppercase text-muted-foreground">Experience</h3>
-            <div className="group space-y-12">
-              <div className="relative pl-8 border-l border-primary/20 hover:border-primary transition-colors">
+            <div className="space-y-12">
+              {/* Updated TCS / Sainsbury's experience */}
+              <div className="group relative pl-8 border-l border-primary/20 hover:border-primary transition-colors">
                 <div className="absolute -left-[5px] top-0 w-2 h-2 rounded-full bg-primary" />
                 <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-2">
                   <h4 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
-                    Systems Engineer • Tata Consultancy Services
+                    Systems Engineer • TCS - Sainsbury's
                   </h4>
-                  <span className="text-sm text-muted-foreground shrink-0">Nov 2021 — Present</span>
+                  <span className="text-sm text-muted-foreground shrink-0">June 2023 — Present</span>
                 </div>
-                <p className="text-sm font-medium text-muted-foreground mt-1">
-                  Client: Sainsbury's (Supply Chain Transformation)
-                </p>
+                <p className="text-sm font-medium text-muted-foreground mt-1">Chennai, India</p>
                 <ul className="mt-4 space-y-3 text-sm text-muted-foreground leading-relaxed">
                   <li className="flex gap-2">
                     <span className="text-primary mt-1">•</span>
-                    Spearheading migration of legacy WMS to cloud-native Körber platforms, resulting in a 20% efficiency
-                    gain across 5 flagship depots.
+                    Engineered automated inventory workflows using SQL and PowerShell, eliminating 200+ hours of manual
+                    effort weekly and executing a migration of 100,000+ records with 0% failure rate and zero business
+                    disruption.
                   </li>
                   <li className="flex gap-2">
                     <span className="text-primary mt-1">•</span>
-                    Optimized SQL query performance for real-time inventory tracking, reducing dashboard latency by 45%.
+                    Optimized Warehouse Management System (WMS) core logic and features, streamlining workflows to
+                    improve end-user operational efficiency by ~20%.
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="text-primary mt-1">•</span>
+                    Partnered with cross-functional teams to troubleshoot and resolve critical system bottlenecks,
+                    maintaining 99.9% uptime and ensuring business continuity.
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="text-primary mt-1">•</span>
+                    Orchestrated CI/CD pipelines via GitHub Actions to automate packaging and deployment, reducing
+                    weekly release overhead and eliminating manual errors across Non-Prod and Prod environments.
                   </li>
                 </ul>
                 <div className="flex flex-wrap gap-2 mt-4">
@@ -120,12 +143,62 @@ export default function PortfolioPage() {
                     WMS (Körber)
                   </Badge>
                   <Badge variant="secondary" className="bg-primary/5 text-primary-foreground/80 hover:bg-primary/10">
-                    Oracle SQL
+                    SQL & PowerShell
                   </Badge>
                   <Badge variant="secondary" className="bg-primary/5 text-primary-foreground/80 hover:bg-primary/10">
-                    Unix Shell
+                    GitHub Actions
                   </Badge>
                 </div>
+              </div>
+
+              {/* Added Unipe Internship */}
+              <div className="group relative pl-8 border-l border-primary/20 hover:border-primary transition-colors">
+                <div className="absolute -left-[5px] top-0 w-2 h-2 rounded-full bg-primary" />
+                <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-2">
+                  <h4 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
+                    Software Engineering Intern • Unipe
+                  </h4>
+                  <span className="text-sm text-muted-foreground shrink-0">May 2022 — July 2022</span>
+                </div>
+                <p className="text-sm font-medium text-muted-foreground mt-1">Bangalore, India</p>
+                <ul className="mt-4 space-y-3 text-sm text-muted-foreground leading-relaxed">
+                  <li className="flex gap-2">
+                    <span className="text-primary mt-1">•</span>
+                    Built 10+ AWS Lambda functions and API Gateways, reducing backend response time by 30%.
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="text-primary mt-1">•</span>
+                    Scraped and automated minimum wage data extraction for 28 Indian states using Python, eliminating
+                    manual entry.
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="text-primary mt-1">•</span>
+                    Designed ReactJS interfaces that improved user engagement by 25%.
+                  </li>
+                </ul>
+              </div>
+
+              {/* Added D3View Internship */}
+              <div className="group relative pl-8 border-l border-primary/20 hover:border-primary transition-colors">
+                <div className="absolute -left-[5px] top-0 w-2 h-2 rounded-full bg-primary" />
+                <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-2">
+                  <h4 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
+                    Software Research and Development Intern • D3View
+                  </h4>
+                  <span className="text-sm text-muted-foreground shrink-0">March 2021 — July 2021</span>
+                </div>
+                <p className="text-sm font-medium text-muted-foreground mt-1">Detroit, USA</p>
+                <ul className="mt-4 space-y-3 text-sm text-muted-foreground leading-relaxed">
+                  <li className="flex gap-2">
+                    <span className="text-primary mt-1">•</span>
+                    Automated 30+ test cases with Selenium and Python, cutting QA time from 30 to 3 minutes per test.
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="text-primary mt-1">•</span>
+                    Refactored testing scripts into reusable modules, improving framework scalability and reducing
+                    maintenance effort by 40%.
+                  </li>
+                </ul>
               </div>
             </div>
           </section>
@@ -133,6 +206,7 @@ export default function PortfolioPage() {
           <section id="projects" className="space-y-8">
             <h3 className="text-sm font-bold tracking-widest uppercase text-muted-foreground">Featured Projects</h3>
             <BentoGrid>
+              {/* Existing projects */}
               <BentoCard
                 className="md:col-span-2"
                 title="Sainsbury’s WMS Optimization"
@@ -147,13 +221,14 @@ export default function PortfolioPage() {
               <BentoCard
                 title="Real-time Transit Tracker"
                 description="Live bus and subway tracking system using public APIs and WebSockets for low-latency updates."
-                header={<ArrowUpRight className="w-8 h-8 text-primary mb-2" />}
+                header={<DatabaseZap className="w-8 h-8 text-primary mb-2" />}
               />
+              {/* Added ASL to Speech Engine */}
               <BentoCard
                 className="md:col-span-2"
-                title="Inventory Analytics Engine"
-                description="A custom dashboard built with Python and SQL to visualize supply chain bottlenecks and demand spikes."
-                header={<Database className="w-8 h-8 text-primary mb-2" />}
+                title="ASL to Speech Engine"
+                description="TensorFlow-powered neural network that translates American Sign Language into real-time speech via a mobile application, enabling accessible communication."
+                header={<Cpu className="w-8 h-8 text-primary mb-2" />}
               />
             </BentoGrid>
           </section>
