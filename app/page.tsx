@@ -3,27 +3,24 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { BentoGrid, BentoCard } from "@/components/bento-grid"
 import { AnimatedCounter } from "@/components/animated-counter"
-import {
-  FileText,
-  Github,
-  Linkedin,
-  Mail,
-  DatabaseZap,
-  Cpu,
-  Package,
-  Truck,
-  Code2,
-  Cloud,
-  Brain,
-} from "lucide-react"
+import { WorkStatus } from "@/components/work-status"
+import { LogisticsMesh } from "@/components/supply-chain-visuals"
+import { DevelopmentLab } from "@/components/development-lab"
+import Image from "next/image"
+import { FileText, Github, Linkedin, Mail, DatabaseZap, Cpu, Package, Truck, Code2, Cloud } from "lucide-react"
 
 export default function PortfolioPage() {
   return (
-    <main className="min-h-screen max-w-6xl mx-auto px-6 py-12 lg:py-24 selection:bg-primary/30">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+    <main className="relative min-h-screen max-w-6xl mx-auto px-6 py-12 lg:py-24 selection:bg-primary/30">
+      {/* Background Logistics Visuals */}
+      <LogisticsMesh />
+
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 relative z-10">
         {/* Left Column: Fixed Content on Desktop */}
         <aside className="lg:col-span-5 flex flex-col justify-between lg:sticky lg:top-24 lg:h-[calc(100vh-12rem)]">
           <div>
+            <WorkStatus />
+
             <h1 className="text-5xl font-bold tracking-tight text-foreground sm:text-6xl">Gauthum J</h1>
             <h2 className="mt-4 text-xl font-medium text-primary tracking-wide uppercase">
               Supply Chain Systems Engineer
@@ -33,10 +30,14 @@ export default function PortfolioPage() {
               real-time logistics data.
             </p>
 
-            <nav className="hidden lg:flex flex-col gap-4 mt-16 text-sm font-bold tracking-widest uppercase text-muted-foreground">
+            <nav className="hidden lg:flex flex-col gap-4 text-sm font-bold tracking-widest uppercase text-muted-foreground mb-0 py-0 mt-8">
               <a href="#about" className="group flex items-center gap-4 hover:text-foreground transition-colors">
                 <span className="h-px w-8 bg-muted-foreground group-hover:w-16 group-hover:bg-foreground transition-all"></span>
                 About
+              </a>
+              <a href="#lab" className="group flex items-center gap-4 hover:text-foreground transition-colors">
+                <span className="h-px w-8 bg-muted-foreground group-hover:w-16 group-hover:bg-foreground transition-all"></span>
+                Dev Lab
               </a>
               <a href="#experience" className="group flex items-center gap-4 hover:text-foreground transition-colors">
                 <span className="h-px w-8 bg-muted-foreground group-hover:w-16 group-hover:bg-foreground transition-all"></span>
@@ -50,7 +51,9 @@ export default function PortfolioPage() {
           </div>
 
           <div className="mt-12 lg:mt-0 space-y-8">
-            <div className="flex items-center gap-6 text-muted-foreground">
+            
+
+            <div className="flex items-center gap-6 text-muted-foreground py-0 my-2">
               <a href="https://github.com/gauthumj" className="hover:text-primary transition-colors">
                 <Github className="w-6 h-6" />
               </a>
@@ -101,6 +104,8 @@ export default function PortfolioPage() {
               not just efficient, but resilient to the unpredictability of global supply chains.
             </p>
           </section>
+
+          <DevelopmentLab />
 
           <section id="experience" className="space-y-12">
             <h3 className="text-sm font-bold tracking-widest uppercase text-muted-foreground">Experience</h3>
@@ -293,7 +298,7 @@ export default function PortfolioPage() {
             </form>
           </section>
 
-          <footer className="pt-12 border-t border-border/50 text-sm text-muted-foreground text-center lg:text-left">
+          <footer className="pt-17 border-t border-border/50 text-sm text-muted-foreground text-center lg:text-left">
             <p>© 2026 • Built with precision for the modern supply chain.</p>
           </footer>
         </div>
