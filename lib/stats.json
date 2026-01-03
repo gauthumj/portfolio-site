@@ -1,0 +1,33 @@
+{
+    "current_sprint": [
+        {
+            "title": "Korber UI Updates",
+            "status": "In Progress",
+            "progress": 65
+        },
+        {
+            "title": "WMS Enhancements",
+            "status": "In Progress",
+            "progress": 40
+        },
+        {
+            "title": "Performance Improvements",
+            "status": "In Progress",
+            "progress": 80
+        }
+    ],
+    "deployed": [
+        {
+            "title": "Auto Deployment Pipeline"
+        }
+    ],
+    "github_stats": {
+        "total_repos": 12,
+        "total_stars": 150,
+        "total_forks": 45,
+        "most_starred_repo": {
+            "name": "logistics-dashboard",
+            "stars": 45
+        }
+    }
+}

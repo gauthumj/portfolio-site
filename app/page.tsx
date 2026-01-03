@@ -1,3 +1,7 @@
+// TODO: add icons to headings
+// TODO: setup stats.json and gh actions for dev lab
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -19,9 +23,20 @@ import {
   Code2,
   Cloud,
   Link,
+  BriefcaseBusiness,
+  PencilRuler,
+  Swords,
 } from "lucide-react";
+import { toast } from "sonner";
+import { useState } from "react";
 
 export default function PortfolioPage() {
+  const [formVals, setFormVals] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
   return (
     <main className="relative min-h-screen max-w-6xl mx-auto py-12 lg:py-16 selection:bg-primary/30 px-6">
       {/* Background Logistics Visuals */}
@@ -56,7 +71,7 @@ export default function PortfolioPage() {
               optimization, fleet management, and real-time logistics data.
             </p>
 
-            <nav className="hidden lg:flex flex-col gap-4 text-sm font-bold tracking-widest uppercase text-muted-foreground mb-0 py-0 mt-8">
+            <nav className="hidden lg:flex flex-col gap-4 text-sm font-bold tracking-widest uppercase text-muted-foreground mb-0 py-0 mt-8 md:my-5">
               <a
                 href="#about"
                 className="group flex items-center gap-4 hover:text-foreground transition-colors"
@@ -89,7 +104,7 @@ export default function PortfolioPage() {
           </div>
 
           <div className="mt-12 lg:mt-0 space-y-8">
-            <div className="flex items-center gap-6 text-muted-foreground py-0 my-2">
+            <div className="flex items-center gap-8 text-muted-foreground py-0 my-2">
               <a
                 href="https://github.com/gauthumj"
                 className="hover:text-primary transition-colors"
@@ -171,9 +186,12 @@ export default function PortfolioPage() {
           <DevelopmentLab />
 
           <section id="experience" className="space-y-12">
-            <h3 className="text-sm font-bold tracking-widest uppercase text-muted-foreground">
-              Experience
-            </h3>
+            <div className="flex items-center gap-3">
+              <BriefcaseBusiness className="w-5 h-5 text-primary" />
+              <h3 className="text-sm font-bold tracking-widest uppercase text-muted-foreground">
+                Experience
+              </h3>
+            </div>
             <div className="space-y-12">
               {/* Updated TCS / Sainsbury's experience */}
               <div className="group relative pl-8 border-l border-primary/20 hover:border-primary transition-colors">
@@ -304,9 +322,12 @@ export default function PortfolioPage() {
           </section>
 
           <section id="projects" className="space-y-8">
-            <h3 className="text-sm font-bold tracking-widest uppercase text-muted-foreground">
-              Featured Projects
-            </h3>
+            <div className="flex items-center gap-3">
+              <PencilRuler className="w-5 h-5 text-primary" />
+              <h3 className="text-sm font-bold tracking-widest uppercase text-muted-foreground">
+                Featured Projects
+              </h3>
+            </div>
             <BentoGrid>
               {/* Existing projects */}
               <BentoCard
@@ -336,9 +357,12 @@ export default function PortfolioPage() {
           </section>
 
           <section className="space-y-8">
-            <h3 className="text-sm font-bold tracking-widest uppercase text-muted-foreground">
-              Technical Toolkit
-            </h3>
+            <div className="flex items-center gap-3">
+              <Swords className="w-5 h-5 text-primary" />
+              <h3 className="text-sm font-bold tracking-widest uppercase text-muted-foreground">
+                Technical Toolkit
+              </h3>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <Card className="bg-card/50 border-border/50">
                 <CardContent className="p-6 space-y-4">
@@ -397,31 +421,90 @@ export default function PortfolioPage() {
           </section>
 
           <section className="space-y-8">
-            <h3 className="text-sm font-bold tracking-widest uppercase text-muted-foreground">
-              Get In Touch
-            </h3>
+            <div className="flex items-center gap-3">
+              <Mail className="w-5 h-5 text-primary" />
+
+              <h3 className="text-sm font-bold tracking-widest uppercase text-muted-foreground">
+                Get In Touch
+              </h3>
+            </div>
             <form className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <input
                   type="text"
+                  value={formVals.name}
+                  onChange={(e) =>
+                    setFormVals({ ...formVals, name: e.target.value })
+                  }
                   placeholder="Name"
                   className="bg-card border border-border/50 rounded-lg p-3 text-sm focus:outline-none focus:border-primary/50 transition-colors"
                 />
                 <input
                   type="email"
+                  value={formVals.email}
+                  onChange={(e) =>
+                    setFormVals({ ...formVals, email: e.target.value })
+                  }
                   placeholder="Email"
                   className="bg-card border border-border/50 rounded-lg p-3 text-sm focus:outline-none focus:border-primary/50 transition-colors"
                 />
               </div>
               <textarea
+                value={formVals.message}
+                onChange={(e) =>
+                  setFormVals({ ...formVals, message: e.target.value })
+                }
                 placeholder="Message"
                 rows={4}
                 className="w-full bg-card border border-border/50 rounded-lg p-3 text-sm focus:outline-none focus:border-primary/50 transition-colors resize-none"
               ></textarea>
-              <Button className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-6">
-                Send Message
-              </Button>
+              <p className="text-sm text-muted-foreground block">
+                <span className="text-primary">Note: </span>This form is
+                directly handled via my home-server. No third-party services are
+                used. Your details are safe and secure.
+              </p>
             </form>
+            <Button
+              onClick={() => {
+                console.log(formVals);
+                // toast.success("Message sent! I'll get back to you soon.", {
+                //   duration: 4000,
+                //   position: "top-center",
+                // });
+                toast.promise(
+                  new Promise((resolve) => {
+                    fetch(
+                      "https://gauthumj-home-server.onrender.com/api/contact",
+                      {
+                        method: "POST",
+                        headers: {
+                          "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(formVals),
+                      }
+                    ).then((response) => {
+                      if (response.ok) {
+                        resolve(true);
+                      } else {
+                        throw new Error("Network response was not ok");
+                      }
+                    });
+                  }),
+                  {
+                    loading: "Sending message...",
+                    success: "Message sent! I'll get back to you soon.",
+                    error: "Failed to send message. Please try again later.",
+                  }
+                ),
+                  {
+                    duration: 4000,
+                    position: "top-center",
+                  };
+              }}
+              className="w-full bg-primary hover:bg-primary/90  text-white font-bold py-6"
+            >
+              Send Message
+            </Button>
           </section>
 
           <footer className="pt-17 border-t border-border/50 text-sm text-muted-foreground text-center lg:text-left">
