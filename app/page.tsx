@@ -11,7 +11,7 @@ import { FileText, Github, Linkedin, Mail, DatabaseZap, Cpu, Package, Truck, Cod
 
 export default function PortfolioPage() {
   return (
-    <main className="relative min-h-screen max-w-6xl mx-auto px-6 py-12 lg:py-24 selection:bg-primary/30">
+    <main className="relative min-h-screen max-w-6xl mx-auto py-12 lg:py-24 selection:bg-primary/30 px-6">
       {/* Background Logistics Visuals */}
       <LogisticsMesh />
 
