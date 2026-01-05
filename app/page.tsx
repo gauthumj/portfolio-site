@@ -29,6 +29,11 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { useState } from "react";
+import axios from "axios";
+// import { loadEnvConfig } from "@next/env";
+// // import dotenv from "dotenv";
+
+// loadEnvConfig("./");
 
 export default function PortfolioPage() {
   const [formVals, setFormVals] = useState({
@@ -118,6 +123,7 @@ export default function PortfolioPage() {
                 <Linkedin className="w-6 h-6" />
               </a>
               <a
+                id="email"
                 href="mailto:jgauthum@gmail.com"
                 className="hover:text-primary transition-colors"
               >
@@ -463,48 +469,52 @@ export default function PortfolioPage() {
                 directly handled via my home-server. No third-party services are
                 used. Your details are safe and secure.
               </p>
+              <Button
+                onClick={(e) => {
+                  console.log(formVals);
+                  e.preventDefault();
+
+                  toast.promise(
+                    new Promise((resolve) => {
+                      axios
+                        .post(
+                          process.env.NEXT_PUBLIC_WEBHOOK_URL!,
+                          JSON.stringify(formVals),
+                          {
+                            headers: {
+                              "Content-Type": "application/json",
+                              accessControlAllowOrigin: "*",
+                            },
+                          }
+                        )
+                        .then((response) => {
+                          if (response.status === 200) {
+                            resolve(true);
+                          } else {
+                            throw new Error("Network response was not ok");
+                          }
+                        })
+                        .catch((error) => {
+                          throw new Error("Network response was not ok");
+                        });
+                    }),
+                    {
+                      loading: "Sending message...",
+                      success: "Message sent! I'll get back to you soon.",
+                      error:
+                        "Failed to send message. Please reach out to me via email.",
+                    }
+                  ),
+                    {
+                      duration: 4000,
+                      position: "top-center",
+                    };
+                }}
+                className="w-full bg-primary hover:bg-primary/90  text-white font-bold py-6"
+              >
+                Send Message
+              </Button>
             </form>
-            <Button
-              onClick={() => {
-                console.log(formVals);
-                // toast.success("Message sent! I'll get back to you soon.", {
-                //   duration: 4000,
-                //   position: "top-center",
-                // });
-                toast.promise(
-                  new Promise((resolve) => {
-                    fetch(
-                      "https://gauthumj-home-server.onrender.com/api/contact",
-                      {
-                        method: "POST",
-                        headers: {
-                          "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify(formVals),
-                      }
-                    ).then((response) => {
-                      if (response.ok) {
-                        resolve(true);
-                      } else {
-                        throw new Error("Network response was not ok");
-                      }
-                    });
-                  }),
-                  {
-                    loading: "Sending message...",
-                    success: "Message sent! I'll get back to you soon.",
-                    error: "Failed to send message. Please try again later.",
-                  }
-                ),
-                  {
-                    duration: 4000,
-                    position: "top-center",
-                  };
-              }}
-              className="w-full bg-primary hover:bg-primary/90  text-white font-bold py-6"
-            >
-              Send Message
-            </Button>
           </section>
 
           <footer className="pt-17 border-t border-border/50 text-sm text-muted-foreground text-center lg:text-left">
