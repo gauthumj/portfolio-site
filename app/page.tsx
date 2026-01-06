@@ -1,6 +1,4 @@
-// TODO: add icons to headings
 // TODO: setup stats.json and gh actions for dev lab
-"use client";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -22,26 +20,14 @@ import {
   Truck,
   Code2,
   Cloud,
-  Link,
   BriefcaseBusiness,
   PencilRuler,
   Swords,
 } from "lucide-react";
-import { toast } from "sonner";
-import { useState } from "react";
-import axios from "axios";
-// import { loadEnvConfig } from "@next/env";
-// // import dotenv from "dotenv";
 
-// loadEnvConfig("./");
+import ContactForm from "@/components/contact-form";
 
 export default function PortfolioPage() {
-  const [formVals, setFormVals] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-
   return (
     <main className="relative min-h-screen max-w-6xl mx-auto py-12 lg:py-16 selection:bg-primary/30 px-6">
       {/* Background Logistics Visuals */}
@@ -434,87 +420,7 @@ export default function PortfolioPage() {
                 Get In Touch
               </h3>
             </div>
-            <form className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input
-                  type="text"
-                  value={formVals.name}
-                  onChange={(e) =>
-                    setFormVals({ ...formVals, name: e.target.value })
-                  }
-                  placeholder="Name"
-                  className="bg-card border border-border/50 rounded-lg p-3 text-sm focus:outline-none focus:border-primary/50 transition-colors"
-                />
-                <input
-                  type="email"
-                  value={formVals.email}
-                  onChange={(e) =>
-                    setFormVals({ ...formVals, email: e.target.value })
-                  }
-                  placeholder="Email"
-                  className="bg-card border border-border/50 rounded-lg p-3 text-sm focus:outline-none focus:border-primary/50 transition-colors"
-                />
-              </div>
-              <textarea
-                value={formVals.message}
-                onChange={(e) =>
-                  setFormVals({ ...formVals, message: e.target.value })
-                }
-                placeholder="Message"
-                rows={4}
-                className="w-full bg-card border border-border/50 rounded-lg p-3 text-sm focus:outline-none focus:border-primary/50 transition-colors resize-none"
-              ></textarea>
-              <p className="text-sm text-muted-foreground block">
-                <span className="text-primary">Note: </span>This form is
-                directly handled via my home-server. No third-party services are
-                used. Your details are safe and secure.
-              </p>
-              <Button
-                onClick={(e) => {
-                  console.log(formVals);
-                  e.preventDefault();
-
-                  toast.promise(
-                    new Promise((resolve) => {
-                      axios
-                        .post(
-                          process.env.NEXT_PUBLIC_WEBHOOK_URL!,
-                          JSON.stringify(formVals),
-                          {
-                            headers: {
-                              "Content-Type": "application/json",
-                              accessControlAllowOrigin: "*",
-                            },
-                          }
-                        )
-                        .then((response) => {
-                          if (response.status === 200) {
-                            resolve(true);
-                          } else {
-                            throw new Error("Network response was not ok");
-                          }
-                        })
-                        .catch((error) => {
-                          throw new Error("Network response was not ok");
-                        });
-                    }),
-                    {
-                      loading: "Sending message...",
-                      success: "Message sent! I'll get back to you soon.",
-                      error:
-                        "Failed to send message. Please reach out to me via email.",
-                    }
-                  ),
-                    {
-                      duration: 4000,
-                      position: "top-center",
-                    };
-                }}
-                className="w-full bg-primary hover:bg-primary/90  text-white font-bold py-6"
-              >
-                Send Message
-              </Button>
-            </form>
+            <ContactForm />
           </section>
 
           <footer className="pt-17 border-t border-border/50 text-sm text-muted-foreground text-center lg:text-left">
