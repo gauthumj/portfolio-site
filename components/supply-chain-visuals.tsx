@@ -1,12 +1,22 @@
-"use client"
+"use client";
 
 export function LogisticsMesh() {
   return (
-    <div className="fixed inset-0 opacity-15 -z-10 overflow-hidden pointer-events-none">
-      <svg className="h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice">
+    <div className="fixed inset-0 opacity-30 -z-10 overflow-hidden pointer-events-none">
+      <svg
+        className="h-full w-full"
+        viewBox="0 0 100 100"
+        preserveAspectRatio="xMidYMid slice"
+      >
         <defs>
           <pattern id="grid" width="5" height="5" patternUnits="userSpaceOnUse">
-            <path d="M 5 0 L 0 0 0 5" fill="none" stroke="currentColor" strokeWidth="0.1" opacity="0.15" />
+            <path
+              d="M 5 0 L 0 0 0 5"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="0.1"
+              opacity="0.15"
+            />
           </pattern>
 
           <style>{`
@@ -40,7 +50,12 @@ export function LogisticsMesh() {
           `}</style>
         </defs>
 
-        <rect width="100%" height="100%" fill="url(#grid)" className="text-foreground" />
+        <rect
+          width="100%"
+          height="100%"
+          fill="url(#grid)"
+          className="text-foreground"
+        />
 
         <g className="text-primary/40" strokeWidth="0.8" fill="none">
           {/* Route 1: Left - Straight, 45° turn, straight down */}
@@ -72,7 +87,13 @@ export function LogisticsMesh() {
 
         <g className="text-primary">
           {/* Route 1 nodes */}
-          <circle cx="15" cy="25" r="1.2" fill="currentColor" className="pulse-node" />
+          <circle
+            cx="15"
+            cy="25"
+            r="1.2"
+            fill="currentColor"
+            className="pulse-node"
+          />
           <circle
             cx="35"
             cy="45"
@@ -152,5 +173,5 @@ export function LogisticsMesh() {
         </g>
       </svg>
     </div>
-  )
+  );
 }

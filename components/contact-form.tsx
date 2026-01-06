@@ -43,44 +43,34 @@ function ContactForm() {
       </p>
       <Button
         onClick={(e) => {
-          console.log(formVals);
           e.preventDefault();
+          console.log(formVals);
 
-          toast.promise(
-            new Promise((resolve) => {
-              axios
-                .post(
-                  process.env.NEXT_PUBLIC_WEBHOOK_URL!,
-                  JSON.stringify(formVals),
-                  {
-                    headers: {
-                      "Content-Type": "application/json",
-                      accessControlAllowOrigin: "*",
-                    },
-                  }
-                )
-                .then((response) => {
-                  if (response.status === 200) {
-                    resolve(true);
-                  } else {
-                    throw new Error("Network response was not ok");
-                  }
-                })
-                .catch((error) => {
-                  throw new Error("Network response was not ok");
-                });
-            }),
-            {
-              loading: "Sending message...",
-              success: "Message sent! I'll get back to you soon.",
-              error:
-                "Failed to send message. Please reach out to me via email.",
-            }
-          ),
-            {
-              duration: 4000,
-              position: "top-center",
-            };
+          if (!process.env.NEXT_PUBLIC_WEBHOOK_URL) {
+            toast.error(
+              "Looks like I have broken my contact form! Please reach out to me via email. (I've clicked the email link for you!)"
+            );
+            document.getElementById("email")?.click();
+            return;
+          }
+
+          const req = axios
+            .post(process.env.NEXT_PUBLIC_WEBHOOK_URL, formVals, {
+              headers: {
+                "Content-Type": "application/json",
+              },
+            })
+            .then((response) => {
+              if (response.status === 200) return true;
+              throw new Error("Network response was not ok");
+            });
+
+          toast.promise(req, {
+            loading: "Sending message...",
+            success: "Message sent! I'll get back to you soon.",
+            error: () =>
+              "Failed to send message. Please reach out to me via email.",
+          });
         }}
         className="w-full bg-primary hover:bg-primary/90  text-white font-bold py-6"
       >

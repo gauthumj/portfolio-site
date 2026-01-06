@@ -14,19 +14,27 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: "/images/gauthum-formal-2-1.jpeg",
-        media: "(prefers-color-scheme: light)",
+        url: "/logo/favicon-16x16.png",
+        media: "image/png",
       },
       {
-        url: "/images/gauthum-formal-2-1.jpeg",
-        media: "(prefers-color-scheme: dark)",
+        url: "/logo/favicon-32x32.png",
+        media: "image/png",
       },
       {
-        url: "/icon.svg",
-        type: "image/svg+xml",
+        url: "/logo/favicon.ico",
+        type: "image/x-icon",
+      },
+      {
+        url: "/logo/android-chrome-192x192.png",
+        media: "image/png",
+      },
+      {
+        url: "/logo/android-chrome-512x512.png",
+        media: "image/png",
       },
     ],
-    apple: "/apple-icon.png",
+    apple: "/logo/apple-touch-icon.png",
   },
 };
 
