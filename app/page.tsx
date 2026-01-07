@@ -229,19 +229,19 @@ export default function PortfolioPage() {
                 </ul>
                 <div className="flex flex-wrap gap-2 mt-4">
                   <Badge
-                    variant="secondary"
+                    variant="outline"
                     className="bg-primary/5 text-primary-foreground/80 hover:bg-primary/10"
                   >
                     WMS (Körber)
                   </Badge>
                   <Badge
-                    variant="secondary"
+                    variant="outline"
                     className="bg-primary/5 text-primary-foreground/80 hover:bg-primary/10"
                   >
                     SQL & PowerShell
                   </Badge>
                   <Badge
-                    variant="secondary"
+                    variant="outline"
                     className="bg-primary/5 text-primary-foreground/80 hover:bg-primary/10"
                   >
                     GitHub Actions
@@ -280,6 +280,20 @@ export default function PortfolioPage() {
                     25%.
                   </li>
                 </ul>
+                <div className="flex flex-wrap gap-2 mt-4">
+                  <Badge
+                    variant="outline"
+                    className="bg-primary/5 text-primary-foreground/80 hover:bg-primary/10"
+                  >
+                    AWS
+                  </Badge>
+                  <Badge
+                    variant="outline"
+                    className="bg-primary/5 text-primary-foreground/80 hover:bg-primary/10"
+                  >
+                    ReactJS
+                  </Badge>
+                </div>
               </div>
 
               {/* Added D3View Internship */}
@@ -309,6 +323,26 @@ export default function PortfolioPage() {
                     40%.
                   </li>
                 </ul>
+                <div className="flex flex-wrap gap-2 mt-4">
+                  <Badge
+                    variant="outline"
+                    className="bg-primary/5 text-primary-foreground/80 hover:bg-primary/10"
+                  >
+                    Selenium
+                  </Badge>
+                  <Badge
+                    variant="outline"
+                    className="bg-primary/5 text-primary-foreground/80 hover:bg-primary/10"
+                  >
+                    Python
+                  </Badge>
+                  <Badge
+                    variant="outline"
+                    className="bg-primary/5 text-primary-foreground/80 hover:bg-primary/10"
+                  >
+                    Test Automation
+                  </Badge>
+                </div>
               </div>
             </div>
           </section>
@@ -364,11 +398,20 @@ export default function PortfolioPage() {
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {[
-                      "Python",
-                      "SQL (PostgreSQL/Oracle)",
-                      "JavaScript (React)",
+                      "SQL (Advanced)",
+                      "Python (Advanced)",
+                      "PowerShell",
+                      "C++",
                       "Java",
-                      "Unix",
+                      "JavaScript / TypeScript",
+                      // Frontend & Mobile
+                      // "ReactJS",
+                      "NextJS",
+                      "React Native",
+                      "Flutter",
+                      // ML / Testing
+                      // "TensorFlow",
+                      "Selenium",
                     ].map((skill) => (
                       <Badge
                         key={skill}
@@ -391,12 +434,22 @@ export default function PortfolioPage() {
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {[
+                      // Logistics & Domain
                       "Körber WMS",
+                      "Inventory Automation",
+                      "Fleet Management",
+                      "Route Optimization",
+                      "Supply Chain Visibility",
+                      // Backend & Cloud
                       "AWS",
-                      "Jenkins",
+                      "Firebase",
+                      "Django",
+                      "Flask",
                       "Docker",
-                      "Git",
-                      "Splunk",
+                      // DevOps & Tools
+                      "GitHub Actions",
+                      "CI/CD",
+                      // "MongoDB",
                     ].map((skill) => (
                       <Badge
                         key={skill}

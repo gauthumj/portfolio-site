@@ -14,27 +14,27 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: "/logo/favicon-16x16.png",
+        url: "/favicon-16x16.png",
         media: "image/png",
       },
       {
-        url: "/logo/favicon-32x32.png",
+        url: "/favicon-32x32.png",
         media: "image/png",
       },
       {
-        url: "/logo/favicon.ico",
+        url: "/favicon.ico",
         type: "image/x-icon",
       },
       {
-        url: "/logo/android-chrome-192x192.png",
+        url: "/android-chrome-192x192.png",
         media: "image/png",
       },
       {
-        url: "/logo/android-chrome-512x512.png",
+        url: "/android-chrome-512x512.png",
         media: "image/png",
       },
     ],
-    apple: "/logo/apple-touch-icon.png",
+    apple: "/apple-touch-icon.png",
   },
 };
 

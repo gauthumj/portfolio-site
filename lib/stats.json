@@ -1,9 +1,4 @@
 {
-    "system_telemetry": {
-        "last_sync": "2026-01-02T00:00:00Z",
-        "status": "Optimal",
-        "uptime_pct": 99.9
-    },
     "what-im-building": {
         "title": "Stremio South Indian Add-on"
     },
@@ -25,17 +20,19 @@
         "recent_projects": [
             {
                 "name": "portfolio-site",
-                "description": "Personal portfolio website showcasing projects and skills."
+                "description": "Personal portfolio website showcasing projects and skills.",
+                "status": "Active Development"
             },
             {
                 "name": "contact-form-webhook",
-                "description": "FastAPI webhook for handling contact form submissions."
+                "description": "FastAPI webhook for handling contact form submissions.",
+                "status": "Deployed"
             }
         ],
         "commit_velocity": "High",
         "active_repositories": 12,
         "total_contributions_30d": 48,
         "top_language": "Python",
-        "stars_count": 150
+        "stars_count": 51
     }
 }

@@ -7,6 +7,9 @@ import {
   GitCommit,
   Box,
   GitBranch,
+  Star,
+  Languages,
+  Code,
 } from "lucide-react";
 import stats from "@/lib/stats.json";
 
@@ -22,7 +25,7 @@ export function DevelopmentLab() {
 
       <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
         {/* Terminal Dashboard */}
-        <Card className="md:col-span-8 bg-black/40 border-border/50 font-mono text-sm overflow-hidden">
+        <Card className="md:col-span-7 bg-black/40 border-border/50 font-mono text-sm overflow-hidden">
           <CardHeader className="bg-muted/30 py-3 border-b border-border/50 flex flex-row items-center justify-between">
             <div className="flex gap-1.5">
               <div className="w-3 h-3 rounded-full bg-red-500/50" />
@@ -34,62 +37,6 @@ export function DevelopmentLab() {
             </div>
           </CardHeader>
           <CardContent className="px-6 space-y-4">
-            {/* telemetry headings + values rendered from a small descriptor to keep markup concise */}
-            {/* telemetry displayed as a compact table with transparent borders for better structure */}
-            {(() => {
-              const t = stats.system_telemetry || {};
-              const lastSync = t.last_sync ? t.last_sync.split("T")[0] : "N/A";
-              const status = (t.status ?? "Unknown").toString();
-              const uptime =
-                typeof t.uptime_pct !== "undefined"
-                  ? `${t.uptime_pct}%`
-                  : "N/A";
-
-              const getStatusClass = (s: string) =>
-                s.toLowerCase().includes("up") ||
-                s.toLowerCase().includes("optimal")
-                  ? "text-green-500"
-                  : s.toLowerCase().includes("down") ||
-                    s.toLowerCase().includes("fail")
-                  ? "text-red-500"
-                  : "text-yellow-400";
-
-              return (
-                <table className="w-full table-auto border-collapse text-sm">
-                  <thead>
-                    <tr className="border-transparent">
-                      <th className="text-xs font-medium text-muted-foreground text-left py-1 border border-transparent">
-                        Last Sync
-                      </th>
-                      <th className="text-xs font-medium text-muted-foreground text-left py-1 border border-transparent">
-                        Status
-                      </th>
-                      <th className="text-xs font-medium text-muted-foreground text-left py-1 border border-transparent">
-                        Uptime %
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr className="border-transparent">
-                      <td className="text-xs text-foreground py-1 border border-transparent">
-                        {lastSync}
-                      </td>
-                      <td
-                        className={`text-xs py-1 border border-transparent ${getStatusClass(
-                          status
-                        )}`}
-                      >
-                        {status}
-                      </td>
-                      <td className="text-xs text-foreground py-1 border border-transparent">
-                        {uptime}
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              );
-            })()}
-
             <div className="flex items-start gap-3">
               <span className="text-primary">{">"}</span>
               <div className="space-y-1">
@@ -106,13 +53,13 @@ export function DevelopmentLab() {
                   <span className="text-xs text-muted-foreground uppercase">
                     Current Sprint
                   </span>
-                  <Badge
-                    variant="outline"
-                    className="text-[10px] border-primary/30 text-primary"
-                  >
-                    In Progress
-                  </Badge>
                 </div>
+                <Badge
+                  variant="outline"
+                  className="text-[10px] border-primary/30 text-primary"
+                >
+                  In Progress
+                </Badge>
                 <p className="text-lg font-bold text-foreground">
                   {stats.current_sprint[0].title}
                 </p>
@@ -142,13 +89,13 @@ export function DevelopmentLab() {
         </Card>
 
         {/* GitHub Pulse */}
-        <Card className="md:col-span-4 bg-card/50 border-border/50 flex flex-col">
+        <Card className="md:col-span-5 bg-card/60 border-border/50 flex flex-col">
           <CardHeader className="pb-2">
             <CardTitle className="text-xs font-bold uppercase tracking-widest text-muted-foreground flex items-center gap-2">
               <Github className="w-4 h-4" /> Latest from GitHub
             </CardTitle>
           </CardHeader>
-          <CardContent className="flex-1 flex flex-col justify-between">
+          <CardContent className="flex-1 flex flex-col justify-evenly">
             <div className="space-y-5">
               {stats.github_metrics.recent_projects.map((project, index) => (
                 <div key={index} className="space-y-2">
@@ -162,11 +109,29 @@ export function DevelopmentLab() {
                   </div>
                   <div className="flex items-center gap-2">
                     <div className="flex h-2 w-2 relative">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                      <span
+                        className={`animate-ping absolute inline-flex h-full w-full rounded-full ${
+                          project.status === "Deployed"
+                            ? "bg-green-500"
+                            : "bg-primary"
+                        } opacity-75`}
+                      ></span>
+                      <span
+                        className={`relative inline-flex rounded-full h-2 w-2 ${
+                          project.status === "Deployed"
+                            ? "bg-green-500"
+                            : "bg-primary"
+                        }`}
+                      ></span>
                     </div>
-                    <span className="text-[10px] font-mono text-green-500 uppercase tracking-tighter">
-                      Active Development
+                    <span
+                      className={`text-[10px] font-mono ${
+                        project.status === "Deployed"
+                          ? "text-green-500"
+                          : "text-primary"
+                      } uppercase tracking-tighter`}
+                    >
+                      {project.status}
                     </span>
                   </div>
                 </div>
@@ -176,15 +141,27 @@ export function DevelopmentLab() {
             <div className="pt-6 border-t border-border/50 mt-4 space-y-3">
               <div className="flex items-center justify-between text-xs font-mono">
                 <span className="text-muted-foreground flex items-center gap-1">
-                  <GitCommit className="w-3 h-3" /> Monthly Commits
+                  <GitBranch className="w-3 h-3" /> Commits (30d)
                 </span>
-                <span className="text-primary font-bold">142</span>
+                <span className="text-foreground">
+                  {stats.github_metrics.total_contributions_30d}
+                </span>
               </div>
               <div className="flex items-center justify-between text-xs font-mono">
                 <span className="text-muted-foreground flex items-center gap-1">
-                  <GitBranch className="w-3 h-3" /> Pull Requests
+                  <Code className="w-3 h-3" /> Top Language
                 </span>
-                <span className="text-foreground">12</span>
+                <span className="text-foreground">
+                  {stats.github_metrics.top_language}
+                </span>
+              </div>
+              <div className="flex items-center justify-between text-xs font-mono">
+                <span className="text-muted-foreground flex items-center gap-1">
+                  <Star className="w-3 h-3" /> Stars
+                </span>
+                <span className="text-foreground">
+                  {stats.github_metrics.stars_count}
+                </span>
               </div>
             </div>
           </CardContent>
