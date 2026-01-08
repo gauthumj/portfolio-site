@@ -31,7 +31,7 @@ jobs:
           from datetime import datetime
 
           # Configuration
-          USERNAME = "gauthum-j"
+          USERNAME = "gauthumj"
           FILE_PATH = "stats.json"
           HEADERS = {"Authorization": f"token {os.environ['GH_TOKEN']}"}
 
@@ -53,26 +53,40 @@ jobs:
                       current_data = json.load(f)
               else:
                   current_data = {}
-              
-              datetime.today().strftime('%d-%m-%Y')
-              # 3. Update github_metrics
+
+              # 3. Update Sync Date
+              syncDate = datetime.today().strftime('%d-%m-%Y')
+              current_data["last_sync"] = str(syncDate)
+
+              # 4. Update github_metrics
               github_metrics = current_data.get('github_metrics', {})
               
               # Transform the top 2 repos into your specific structure
               dynamic_projects = []
               for repo in top_repos:
-                  # Check if we already had a status for this in the old file, otherwise default
-                  existing_status = "Active Development"
-                  if 'recent_projects' in github_metrics:
-                      for p in github_metrics['recent_projects']:
-                          if p['name'] == repo['name']:
-                              existing_status = p['status']
-                  
-                  dynamic_projects.append({
-                      "name": repo['name'],
-                      "description": repo['description'] or "No description provided.",
-                      "status": existing_status
-                  })
+                    status = "Active Development"      
+
+                    # Check A: GitHub Deployments API (Vercel, Pages, etc)
+                    deploy_url = repo['url'] + "/deployments"
+                    deployments = requests.get(deploy_url, headers=HEADERS).json()
+                    has_active_deployment = any(d.get('id') for d in deployments) if isinstance(deployments, list) else False
+
+                    # Check B: Releases
+                    release_url = repo['releases_url'].replace('{/id}', '')
+                    releases = requests.get(release_url, headers=HEADERS).json()
+                    has_releases = len(releases) > 0 if isinstance(releases, list) else False
+
+                    # Check C: Explicit Homepage
+                    has_homepage = bool(repo.get('homepage'))
+
+                    if has_active_deployment or has_homepage or has_releases:
+                        status = "Deployed"
+
+                    dynamic_projects.append({
+                        "name": repo['name'],
+                        "description": repo['description'] or "Systems Engineering & Logistics optimization project.",
+                        "status": status,
+                    })
 
               github_metrics.update({
                   "recent_projects": dynamic_projects,
@@ -85,7 +99,7 @@ jobs:
 
               current_data['github_metrics'] = github_metrics
               
-              # 4. Save the merged result
+              # 5. Save the merged result
               with open(FILE_PATH, 'w') as f:
                   json.dump(current_data, f, indent=4)
               
@@ -97,10 +111,10 @@ jobs:
           
           EOF
 
-      # - name: Commit and Push
-      #   run: |
-      #     git config --global user.name "GitHub Action"
-      #     git config --global user.email "action@github.com"
-      #     git add stats.json
-      #     git commit -m "System Sync: Auto-promoted recent projects $(date -u +'%Y-%m-%d')" || exit 0
-      #     git push
+      - name: Commit and Push
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+          git add stats.json
+          git commit -m "System Sync: Auto-promoted recent projects $(date -u +'%Y-%m-%d')" || exit 0
+          git push
