@@ -1,11 +1,11 @@
 {
-    "last_sync": "",
+    "last_sync": "08-01-2026",
     "what-im-building": {
         "title": "Stremio South Indian Add-on"
     },
     "current_sprint": [
         {
-            "title": "Körber UI Feature Build",
+            "title": "K\u00f6rber UI Feature Build",
             "status": "In Progress",
             "progress": 65
         }
@@ -20,20 +20,20 @@
     "github_metrics": {
         "recent_projects": [
             {
-                "name": "portfolio-site",
-                "description": "Personal portfolio website showcasing projects and skills.",
+                "name": "contact-form-server",
+                "description": "FastAPI webhook for handling contact form submissions.",
                 "status": "Active Development"
             },
             {
-                "name": "contact-form-webhook",
-                "description": "FastAPI webhook for handling contact form submissions.",
+                "name": "Stremio-South-Indian-Movies-Addon",
+                "description": "South Indian Content addon for stremio",
                 "status": "Deployed"
             }
         ],
         "commit_velocity": "High",
-        "active_repositories": 12,
+        "active_repositories": 29,
         "total_contributions_30d": 48,
         "top_language": "Python",
-        "stars_count": 51
+        "stars_count": 64
     }
 }
