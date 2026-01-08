@@ -35,7 +35,7 @@ jobs:
 
           # Configuration
           USERNAME = "gauthumj"
-          FILE_PATH = "stats.json"
+          FILE_PATH = "lib/stats.json"
           HEADERS = {"Authorization": f"token {os.environ['GH_TOKEN']}"}
 
           try:
