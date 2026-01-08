@@ -22,7 +22,7 @@ jobs:
 
       - name: Fetch GitHub Data & Merge JSON
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.REPO_TOKEN }}
         run: |
           python - <<EOF
           import json
