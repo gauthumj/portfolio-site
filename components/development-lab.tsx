@@ -8,8 +8,8 @@ import {
   Box,
   GitBranch,
   Star,
-  Languages,
   Code,
+  GitCompareArrows,
 } from "lucide-react";
 import stats from "@/lib/stats.json";
 
@@ -85,6 +85,15 @@ export function DevelopmentLab() {
                 </p>
               </div>
             </div>
+            {/* <div> */}
+            <span className="text-muted-foreground text-xs flex items-center gap-3">
+              <GitCompareArrows className="text-primary w-3 h-3" />
+              <span>Last Sync (Via GH Actions): </span>
+              {stats.last_sync === ""
+                ? new Date(Date.now()).toLocaleString().split(",")[0] //remove time
+                : stats.last_sync}
+            </span>
+            {/* </div> */}
           </CardContent>
         </Card>
 

@@ -1,0 +1,102 @@
+name: Update Portfolio Stats
+on:
+  schedule:
+    - cron: '0 0 * * *' # Every 24 hours
+  workflow_dispatch: # Manual trigger
+
+jobs:
+  update-stats:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Fetch GitHub Data & Merge JSON
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python - <<EOF
+          import json
+          import os
+          import requests
+          from datetime import datetime
+
+          # Configuration
+          USERNAME = "gauthum-j"
+          FILE_PATH = "stats.json"
+          HEADERS = {"Authorization": f"token {os.environ['GH_TOKEN']}"}
+
+          try:
+              # 1. Fetch Fresh Metrics from GitHub API
+              user_data = requests.get(f"https://api.github.com/users/{USERNAME}", headers=HEADERS).json()
+              # Fetch all repos, sorted by recent activity
+              repos = requests.get(f"https://api.github.com/users/{USERNAME}/repos?sort=pushed&direction=desc&per_page=100", headers=HEADERS).json()
+              
+              # Filter out forks and find the top 2 most recently active repos
+              own_repos = [r for r in repos if not r['fork']]
+              top_repos = own_repos[:2]
+              
+              stars = sum(repo['stargazers_count'] for repo in own_repos)
+              
+              # 2. Load Existing Data
+              if os.path.exists(FILE_PATH):
+                  with open(FILE_PATH, 'r') as f:
+                      current_data = json.load(f)
+              else:
+                  current_data = {}
+              
+              datetime.today().strftime('%d-%m-%Y')
+              # 3. Update github_metrics
+              github_metrics = current_data.get('github_metrics', {})
+              
+              # Transform the top 2 repos into your specific structure
+              dynamic_projects = []
+              for repo in top_repos:
+                  # Check if we already had a status for this in the old file, otherwise default
+                  existing_status = "Active Development"
+                  if 'recent_projects' in github_metrics:
+                      for p in github_metrics['recent_projects']:
+                          if p['name'] == repo['name']:
+                              existing_status = p['status']
+                  
+                  dynamic_projects.append({
+                      "name": repo['name'],
+                      "description": repo['description'] or "No description provided.",
+                      "status": existing_status
+                  })
+
+              github_metrics.update({
+                  "recent_projects": dynamic_projects,
+                  "commit_velocity": "High",
+                  "active_repositories": user_data.get('public_repos', 0),
+                  "total_contributions_30d": github_metrics.get('total_contributions_30d', 48),
+                  "top_language": top_repos[0]['language'] if top_repos else "Python",
+                  "stars_count": stars
+              })
+
+              current_data['github_metrics'] = github_metrics
+              
+              # 4. Save the merged result
+              with open(FILE_PATH, 'w') as f:
+                  json.dump(current_data, f, indent=4)
+              
+              print(current_data)
+
+          except Exception as e:
+              print(f"Error updating stats: {e}")
+              exit(1)
+          
+          EOF
+
+      # - name: Commit and Push
+      #   run: |
+      #     git config --global user.name "GitHub Action"
+      #     git config --global user.email "action@github.com"
+      #     git add stats.json
+      #     git commit -m "System Sync: Auto-promoted recent projects $(date -u +'%Y-%m-%d')" || exit 0
+      #     git push
