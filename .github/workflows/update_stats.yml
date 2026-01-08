@@ -16,6 +16,10 @@ jobs:
         with:
           python-version: '3.x'
 
+      - name: Install Deps
+        run: |
+          pip install requests
+
       - name: Fetch GitHub Data & Merge JSON
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
