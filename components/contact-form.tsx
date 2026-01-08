@@ -50,7 +50,9 @@ function ContactForm() {
             toast.error(
               "Looks like I have broken my contact form! Please reach out to me via email. (I've clicked the email link for you!)"
             );
-            document.getElementById("email")?.click();
+            setTimeout(() => {
+              document.getElementById("email")?.click();
+            }, 2000);
             return;
           }
 
@@ -68,8 +70,12 @@ function ContactForm() {
           toast.promise(req, {
             loading: "Sending message...",
             success: "Message sent! I'll get back to you soon.",
-            error: () =>
-              "Failed to send message. Please reach out to me via email.",
+            error: () => {
+              setTimeout(() => {
+                document.getElementById("email")?.click();
+              }, 2000);
+              return "Looks like I have broken my contact form! Please reach out to me via email. (I've clicked the email link for you!)";
+            },
           });
         }}
         className="w-full bg-primary hover:bg-primary/90  text-white font-bold py-6"
