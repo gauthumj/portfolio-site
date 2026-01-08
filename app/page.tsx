@@ -57,7 +57,7 @@ export default function PortfolioPage() {
                 </h2>
               </div>
             </div>
-            <p className="mt-6 text-lg text-muted-foreground leading-relaxed max-w-sm">
+            <p className="mt-6 text-lg text-center md:text-left text-muted-foreground leading-relaxed max-w-sm">
               Engineering resilient supply chains at scale. Specializing in WMS
               optimization, fleet management, and real-time logistics data.
             </p>
@@ -95,7 +95,7 @@ export default function PortfolioPage() {
           </div>
 
           <div className="mt-12 lg:mt-0 space-y-8">
-            <div className="flex items-center gap-8 text-muted-foreground py-0 my-2">
+            <div className="flex items-center justify-center md:justify-start gap-6 md:gap-8 text-muted-foreground py-0 my-2">
               <a
                 href="https://github.com/gauthumj"
                 className="hover:text-primary transition-colors"
@@ -131,7 +131,7 @@ export default function PortfolioPage() {
             </div>
 
             <div className="grid grid-cols-2 gap-8 pt-8 border-t border-border/50">
-              <div>
+              <div className="flex flex-col items-center md:items-start">
                 <p className="text-3xl font-bold text-foreground">
                   <AnimatedCounter end={100} suffix="k+" />
                 </p>
@@ -139,7 +139,7 @@ export default function PortfolioPage() {
                   Records Migrated
                 </p>
               </div>
-              <div>
+              <div className="flex flex-col items-center md:items-start">
                 <p className="text-3xl font-bold text-foreground">
                   <AnimatedCounter end={200} suffix="+" />
                 </p>
