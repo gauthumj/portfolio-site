@@ -46,6 +46,18 @@ function ContactForm() {
           e.preventDefault();
           console.log(formVals);
 
+          // validate email and make sure fields are not empty
+          if (!formVals.email || !formVals.name || !formVals.message) {
+            toast.error("Please fill in all fields before submitting.");
+            return;
+          }
+
+          const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+          if (!emailRegex.test(formVals.email)) {
+            toast.error("Please enter a valid email address.");
+            return;
+          }
+
           if (!process.env.NEXT_PUBLIC_WEBHOOK_URL) {
             toast.error(
               "Looks like I have broken my contact form! Please reach out to me via email. (I've clicked the email link for you!)"
