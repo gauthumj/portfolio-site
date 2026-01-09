@@ -57,7 +57,7 @@ export default function PortfolioPage() {
                 </h2>
               </div>
             </div>
-            <p className="mt-6 text-lg text-center md:text-left text-muted-foreground leading-relaxed max-w-sm">
+            <p className="mt-6 text-lg text-center md:text-left text-muted-foreground leading-relaxed lg:max-w-sm ">
               Engineering resilient supply chains at scale. Specializing in WMS
               optimization, fleet management, and real-time logistics data.
             </p>
