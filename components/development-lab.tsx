@@ -1,3 +1,5 @@
+"use client";
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -12,6 +14,7 @@ import {
   GitCompareArrows,
 } from "lucide-react";
 import stats from "@/lib/stats.json";
+import { Progress } from "./ui/progress";
 
 export function DevelopmentLab() {
   return (
@@ -64,9 +67,7 @@ export function DevelopmentLab() {
                   {stats.current_sprint[0].title}
                 </p>
                 <div className="w-full bg-muted h-1 rounded-full overflow-hidden">
-                  <div
-                    className={`bg-primary h-full w-[${stats.current_sprint[0].progress}%]`}
-                  />
+                  <Progress value={stats.current_sprint[0].progress} />
                 </div>
               </div>
 
@@ -87,11 +88,13 @@ export function DevelopmentLab() {
             </div>
             {/* <div> */}
             <span className="text-muted-foreground text-xs flex items-center gap-3">
-              <GitCompareArrows className="text-primary w-3 h-3" />
-              <span>Last Sync (Via GH Actions): </span>
-              {stats.last_sync === ""
-                ? new Date(Date.now()).toLocaleString().split(",")[0] //remove time
-                : stats.last_sync}
+              <GitCompareArrows className="text-primary w-3 h-3" /> Last Sync
+              (Via GH Actions)
+              <span className="text-white">
+                {stats.last_sync === ""
+                  ? new Date(Date.now()).toLocaleString().split(",")[0] //remove time
+                  : stats.last_sync}
+              </span>
             </span>
             {/* </div> */}
           </CardContent>

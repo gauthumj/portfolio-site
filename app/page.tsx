@@ -130,7 +130,7 @@ export default function PortfolioPage() {
               </a>
             </div>
 
-            <div className="grid grid-cols-2 gap-8 pt-8 border-t border-border/50">
+            <div className="grid grid-cols-2 gap-8 pt-8 border-t border-border/50 text-center md:text-left">
               <div className="flex flex-col items-center md:items-start">
                 <p className="text-3xl font-bold text-foreground">
                   <AnimatedCounter end={100} suffix="k+" />
@@ -238,7 +238,13 @@ export default function PortfolioPage() {
                     variant="outline"
                     className="bg-primary/5 text-primary-foreground/80 hover:bg-primary/10"
                   >
-                    SQL & PowerShell
+                    SQL
+                  </Badge>
+                  <Badge
+                    variant="outline"
+                    className="bg-primary/5 text-primary-foreground/80 hover:bg-primary/10"
+                  >
+                    PowerShell
                   </Badge>
                   <Badge
                     variant="outline"
