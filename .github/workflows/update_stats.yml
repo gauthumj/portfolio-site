@@ -87,7 +87,7 @@ jobs:
 
                     dynamic_projects.append({
                         "name": repo['name'],
-                        "description": repo['description'] or "Systems Engineering & Logistics optimization project.",
+                        "description": repo['description'] or "A Project without description, stay tuned for updates!",
                         "status": status,
                     })
 
