@@ -20,6 +20,7 @@ This repository contains a customized Next.js portfolio site. The project was bo
 
 - **GitHub-powered site stats** - repository and contribution stats are surfaced on the site and are refreshed via GitHub Actions (output stored under `lib/stats.json`).
 - **Self-hosted contact form** - a built-in `components/contact-form.tsx` to send messages to your configured endpoint (serverless or self-hosted handler).
+  - self hosted contact form webhook server example: [Contact form webhook server](https://github.com/gauthumj/contact-form-server)
 - **Interactive design elements**:
   - Animated counters (`components/animated-counter.tsx`) 🔢
   - Bento-style grid layout (`components/bento-grid.tsx`) 🧩
