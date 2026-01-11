@@ -1,8 +1,6 @@
-"use client";
-
 export function LogisticsMesh() {
   return (
-    <div className="fixed inset-0 opacity-30 -z-10 overflow-hidden pointer-events-none">
+    <div className="fixed inset-0 opacity-30 h-[100vh] bg-cover -z-10 overflow-hidden pointer-events-none">
       <svg
         className="h-full w-full"
         viewBox="0 0 100 100"
