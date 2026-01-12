@@ -1,5 +1,5 @@
 {
-    "last_sync": "11-01-2026",
+    "last_sync": "12-01-2026",
     "what-im-building": {
         "title": "Stremio South Indian Add-on"
     },
@@ -20,20 +20,20 @@
     "github_metrics": {
         "recent_projects": [
             {
-                "name": "contact-form-server",
-                "description": "FastAPI webhook for handling contact form submissions.",
+                "name": "portfolio-site",
+                "description": "My Supply chain and Logistics inspired portfolio site showcasing my Stats, Career, and Projects.",
                 "status": "Deployed"
             },
             {
-                "name": "gauthumj",
-                "description": "A Project without description, stay tuned for updates!",
+                "name": "contact-form-server",
+                "description": "FastAPI webhook for handling contact form submissions.",
                 "status": "Deployed"
             }
         ],
         "commit_velocity": "High",
-        "active_repositories": 29,
+        "active_repositories": 30,
         "total_contributions_30d": 48,
-        "top_language": "Python",
-        "stars_count": 64
+        "top_language": "TypeScript",
+        "stars_count": 65
     }
 }
