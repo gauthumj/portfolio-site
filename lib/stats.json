@@ -5,9 +5,9 @@
     },
     "current_sprint": [
         {
-            "title": "K\u00f6rber UI Feature Build",
+            "title": "CI/CD Pipeline for MSSQL DB",
             "status": "In Progress",
-            "progress": 65
+            "progress": 30
         }
     ],
     "deployment_env": [
