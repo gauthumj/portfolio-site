@@ -153,10 +153,10 @@ export function DevelopmentLab() {
             <div className="pt-6 border-t border-border/50 mt-4 space-y-3">
               <div className="flex items-center justify-between text-xs font-mono">
                 <span className="text-muted-foreground flex items-center gap-1">
-                  <GitBranch className="w-3 h-3" /> Commits (30d)
+                  <GitBranch className="w-3 h-3" /> Commits
                 </span>
                 <span className="text-foreground">
-                  {stats.github_metrics.total_contributions_30d}
+                  {stats.github_metrics.total_commits}
                 </span>
               </div>
               <div className="flex items-center justify-between text-xs font-mono">

@@ -39,7 +39,7 @@ jobs:
           HEADERS = {"Authorization": f"token {os.environ['GH_TOKEN']}"}
 
           try:
-              # 1. Fetch Fresh Metrics from GitHub API
+              # Fetch Fresh Metrics from GitHub API
               user_data = requests.get(f"https://api.github.com/users/{USERNAME}", headers=HEADERS).json()
               # Fetch all repos, sorted by recent activity
               repos = requests.get(f"https://api.github.com/users/{USERNAME}/repos?sort=pushed&direction=desc&per_page=100", headers=HEADERS).json()
@@ -50,18 +50,18 @@ jobs:
               
               stars = sum(repo['stargazers_count'] for repo in own_repos)
               
-              # 2. Load Existing Data
+              # Load Existing Data
               if os.path.exists(FILE_PATH):
                   with open(FILE_PATH, 'r') as f:
                       current_data = json.load(f)
               else:
                   current_data = {}
 
-              # 3. Update Sync Date
+              # Update Sync Date
               syncDate = datetime.today().strftime('%d-%m-%Y')
               current_data["last_sync"] = str(syncDate)
 
-              # 4. Update github_metrics
+              # Update github_metrics
               github_metrics = current_data.get('github_metrics', {})
               
               # Transform the top 2 repos into your specific structure
@@ -90,19 +90,20 @@ jobs:
                         "description": repo['description'] or "A Project without description, stay tuned for updates!",
                         "status": status,
                     })
+              total_commits = requests.get("https://api.github.com/search/commits?q=author:gauthumj", headers=HEADERS).json()["total_count"]
 
               github_metrics.update({
                   "recent_projects": dynamic_projects,
                   "commit_velocity": "High",
                   "active_repositories": user_data.get('public_repos', 0),
-                  "total_contributions_30d": github_metrics.get('total_contributions_30d', 48),
+                  "total_commits": total_commits,
                   "top_language": top_repos[0]['language'] if top_repos else "Python",
                   "stars_count": stars
               })
 
               current_data['github_metrics'] = github_metrics
               
-              # 5. Save the merged result
+              # Save the merged result
               with open(FILE_PATH, 'w') as f:
                   json.dump(current_data, f, indent=4)
               
