@@ -1,5 +1,5 @@
 {
-    "last_sync": "11-04-2026",
+    "last_sync": "12-04-2026",
     "what-im-building": {
         "title": "Stremio South Indian Add-on"
     },
@@ -34,6 +34,6 @@
         "active_repositories": 30,
         "total_commits": 330,
         "top_language": "TypeScript",
-        "stars_count": 67
+        "stars_count": 66
     }
 }
