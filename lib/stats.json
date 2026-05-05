@@ -5,7 +5,7 @@
     },
     "current_sprint": [
         {
-            "title": "CI/CD Pipeline for MSSQL DB",
+            "title": "Extend Picking Flow for Multi Pick-Area Support",
             "status": "In Progress",
             "progress": 30
         }
