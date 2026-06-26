@@ -50,6 +50,7 @@ export default function RootLayout({
         <Toaster />
         <Analytics />
       </body>
+      <meta name="cf-2fa-verify" content="0116974f867695e"></meta>
     </html>
   );
 }
