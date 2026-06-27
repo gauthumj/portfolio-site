@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
-import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
+// @ts-ignore
+import "./globals.css";
 
 const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
@@ -11,6 +12,11 @@ export const metadata: Metadata = {
   title: "Gauthum's Portfolio",
   description: "Gauthum's portfolio website showcasing projects and skills.",
   generator: "Next.js",
+  verification: {
+    other: {
+      "cf-2fa-verify": "0116974f867695e",
+    },
+  },
   icons: {
     icon: [
       {
@@ -50,7 +56,6 @@ export default function RootLayout({
         <Toaster />
         <Analytics />
       </body>
-      <meta name="cf-2fa-verify" content="0116974f867695e"></meta>
     </html>
   );
 }
