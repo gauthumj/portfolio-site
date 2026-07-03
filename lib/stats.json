@@ -1,5 +1,5 @@
 {
-    "last_sync": "02-07-2026",
+    "last_sync": "03-07-2026",
     "what-im-building": {
         "title": "Stremio South Indian Add-on"
     },
@@ -20,20 +20,20 @@
     "github_metrics": {
         "recent_projects": [
             {
-                "name": "portfolio-site",
-                "description": "My Supply chain and Logistics inspired portfolio site showcasing my Stats, Career, and Projects.",
-                "status": "Deployed"
+                "name": "pivotlink-browser-router",
+                "description": "High-performance, resource-aware windhawk mod designed to safely route sandboxed and native OS web links without degrading system or gaming performance. Features a structured, multi-tier ranking system for easier browser priority configuration.",
+                "status": "Active Development"
             },
             {
-                "name": "Stremio-South-Indian-Movies-Addon",
-                "description": "South Indian Content addon for stremio",
+                "name": "portfolio-site",
+                "description": "My Supply chain and Logistics inspired portfolio site showcasing my Stats, Career, and Projects.",
                 "status": "Deployed"
             }
         ],
         "commit_velocity": "High",
-        "active_repositories": 30,
-        "total_commits": 368,
-        "top_language": "TypeScript",
-        "stars_count": 67
+        "active_repositories": 31,
+        "total_commits": 369,
+        "top_language": "C++",
+        "stars_count": 68
     }
 }
