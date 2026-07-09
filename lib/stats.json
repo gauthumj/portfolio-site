@@ -1,5 +1,5 @@
 {
-    "last_sync": "08-07-2026",
+    "last_sync": "09-07-2026",
     "what-im-building": {
         "title": "Stremio South Indian Add-on"
     },
@@ -20,20 +20,20 @@
     "github_metrics": {
         "recent_projects": [
             {
-                "name": "pivotlink-browser-router",
-                "description": "Ever had a browser open already and Windows opened a Discord/Slack link in your default browser by launching it from scratch? Now it won't.",
-                "status": "Active Development"
-            },
-            {
                 "name": "portfolio-site",
                 "description": "My Supply chain and Logistics inspired portfolio site showcasing my Stats, Career, and Projects.",
                 "status": "Deployed"
+            },
+            {
+                "name": "pivotlink-browser-router",
+                "description": "Ever had a browser open already and Windows opened a Discord/Slack link in your default browser by launching it from scratch? Now it won't.",
+                "status": "Active Development"
             }
         ],
         "commit_velocity": "High",
         "active_repositories": 32,
         "total_commits": 378,
-        "top_language": "C++",
+        "top_language": "TypeScript",
         "stars_count": 68
     }
 }
