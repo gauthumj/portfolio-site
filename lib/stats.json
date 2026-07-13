@@ -1,18 +1,18 @@
 {
     "last_sync": "13-07-2026",
     "what-im-building": {
-        "title": "Stremio South Indian Add-on"
+        "title": "Pivotlink Browser Router"
     },
     "current_sprint": [
         {
-            "title": "Extend Picking Flow for Multi Pick-Area Support",
+            "title": "Create UI tools for old order cleanup in test Envs",
             "status": "In Progress",
-            "progress": 30
+            "progress": 40
         }
     ],
     "deployment_env": [
         {
-            "title": "FastAPI Webhook Shield",
+            "title": "Github CI/CD Pipeline for non-prod",
             "status": "Deployed",
             "progress": 100
         }
