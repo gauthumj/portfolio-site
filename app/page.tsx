@@ -471,7 +471,7 @@ export default function PortfolioPage() {
             </div>
           </section>
 
-          <section className="space-y-8">
+          <section id="contact" className="space-y-8">
             <div className="flex items-center gap-3">
               <Mail className="w-5 h-5 text-primary" />
 
